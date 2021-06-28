@@ -40,7 +40,9 @@ func NewNacosClient(nodes []string, group string, config constant.ClientConfig) 
 		servers = append(servers, constant.ServerConfig{
 			IpAddr: nacosUrl.Hostname(),
 			Port:   uint64(port),
+			ContextPath: nacosUrl.Path,
 		})
+		log.Info(fmt.Sprintf("node=%s,IpAddr=%s,Port=%s,ContextPath=%s",key,nacosUrl.Hostname(),uint64(port),nacosUrl.Path))
 	}
 
 	if len(strings.TrimSpace(group)) == 0 {
